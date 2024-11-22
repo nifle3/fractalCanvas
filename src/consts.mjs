@@ -1,4 +1,4 @@
-var canvas = document.querySelector("#canvas");
+export var canvas = document.querySelector("#canvas");
 
 export var ctx = canvas.getContext("2d");
 export var iterInput = document.querySelector("#iteration");
@@ -13,3 +13,4 @@ export var state = {
 export var {width, height} = canvas;
 
 ctx.translate(width/2, height/2);
+ctx.strokeStyle = 'rgb(200, 200, 200)';
