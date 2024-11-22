@@ -1,5 +1,5 @@
 import { ctx, serpinskBtn, state, width, height} from "./consts.mjs";
-import { logDraw } from "./utils"
+import { logDraw } from "./utils.mjs"
 var drawEqualTrianlge = (
     (xCenter, yCenter, length) => {
         var halfLength = length/2;

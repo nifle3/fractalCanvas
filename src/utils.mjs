@@ -1,4 +1,4 @@
-import {state} from "./consts";
+import {state} from "./consts.mjs";
 
 export var logDraw = (
     (callback) => () => {
