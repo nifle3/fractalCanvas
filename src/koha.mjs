@@ -1,8 +1,8 @@
-import { ctx, kohaBtn } from "./consts.mjs";
+import { ctx, kohaBtn, state } from "./consts.mjs";
 
 var koha = (
     () => {
-        console.log("koha hello");
+        console.log(state.iteration);
     }
 );
 

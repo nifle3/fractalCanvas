@@ -1,8 +1,8 @@
-import { ctx, mandelbrotBtn } from "./consts.mjs";
+import { ctx, mandelbrotBtn, state } from "./consts.mjs";
 
 var mandelbrot = (
     () => {
-        console.log("mandelbrot hello");
+        console.log(state.iteration);
     }
 );
 

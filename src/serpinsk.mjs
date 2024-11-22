@@ -1,8 +1,8 @@
-import { ctx, serpinskBtn } from "./consts.mjs";
+import { ctx, serpinskBtn, state } from "./consts.mjs";
 
 var serpinsk = (
     () => {
-        console.log("serpinsk hello");
+        console.log(state.iteration);
     }
 );
 

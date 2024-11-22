@@ -1,8 +1,8 @@
-import { ctx, kantorBtn } from "./consts.mjs";
+import { ctx, kantorBtn, state } from "./consts.mjs";
 
 var kantor = (
     () => {
-        console.log("kantor hello");
+        console.log(state.iteration);
     }
 );
 
