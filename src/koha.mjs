@@ -1,4 +1,5 @@
 import { ctx, kohaBtn, state } from "./consts.mjs";
+import { logDraw, clearRect } from "./utils.mjs";
 
 var koha = (
     () => {
@@ -6,4 +7,4 @@ var koha = (
     }
 );
 
-kohaBtn.addEventListener("click", koha);
+kohaBtn.addEventListener("click", logDraw(clearRect(koha)));

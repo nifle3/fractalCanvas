@@ -1,4 +1,6 @@
 import { ctx, mandelbrotBtn, state } from "./consts.mjs";
+import { logDraw, clearRect } from "./utils.mjs";
+
 
 var mandelbrot = (
     () => {
@@ -6,4 +8,4 @@ var mandelbrot = (
     }
 );
 
-mandelbrotBtn.addEventListener("click", mandelbrot);
+mandelbrotBtn.addEventListener("click", logDraw(clearRect(mandelbrot)));

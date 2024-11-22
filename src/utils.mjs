@@ -11,8 +11,8 @@ export var logDraw = (
 
 export var clearRect = (
     (callback) => () => {
-        var startOfY = -1 * height;
-        var startOfX = -1 * width;
+        var startOfY = -1 * (height/2);
+        var startOfX = -1 * (width/2);
         ctx.clearRect(startOfX, startOfY, width, height);
         callback();
     }

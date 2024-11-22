@@ -1,4 +1,5 @@
 import { ctx, kantorBtn, state } from "./consts.mjs";
+import { logDraw, clearRect } from "./utils.mjs";
 
 var kantor = (
     () => {
@@ -6,4 +7,4 @@ var kantor = (
     }
 );
 
-kantorBtn.addEventListener("click", kantor);
+kantorBtn.addEventListener("click", logDraw(clearRect(kantor)));

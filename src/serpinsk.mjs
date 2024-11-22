@@ -1,11 +1,46 @@
-import { ctx, serpinskBtn, state, width, height} from "./consts.mjs";
-import { logDraw, clearRect } from "./utils.mjs"
+import { ctx, serpinskBtn, state } from "./consts.mjs";
+import { logDraw, clearRect } from "./utils.mjs";
+
+var calculateTrueLength = (
+    (length) => {
+        return length/2;
+    }
+);
+
 var drawEqualTrianlge = (
     (xCenter, yCenter, length) => {
-        var halfLength = length/2;
+        var halfLength = calculateTrueLength(length);
         ctx.moveTo(xCenter, yCenter-halfLength);
         ctx.lineTo(xCenter+halfLength, yCenter+halfLength);
-        ctx.lineTo(xCenter-halfLength, yCenter+halfLength);        
+        ctx.lineTo(xCenter-halfLength, yCenter+halfLength);
+        ctx.closePath();
+    }
+);
+
+var calculateCenterOfShapesTriangle = (
+    (xCenter, yCenter, length) => {
+        var halfLength = calculateTrueLength(length);
+        var dot1X = xCenter;
+        var dot1Y = yCenter-halfLength;
+        var dot2X = xCenter+halfLength;
+        var dot2Y = yCenter+halfLength;
+        var dot3X = xCenter-halfLength;
+        var dot3Y = yCenter+halfLength;
+
+        var result = [];
+        
+
+        /*
+            {
+                "x":
+                "y":
+            }
+        */
+
+
+        
+
+        return result;
     }
 );
 
@@ -15,14 +50,14 @@ var serpinsk = (
         var yCenter = 0;
      
         ctx.beginPath();
+        drawEqualTrianlge(xCenter, yCenter, 400);
 
-        drawEqualTrianlge(xCenter, yCenter, 200);
+        for (var i = 0; i < state.iteration; i++) {
+        }
 
-        ctx.closePath();
+
+
         ctx.stroke();
-
-        drawEqualTrianlge(xCenter, yCenter, 300);
-
     }
 );
 

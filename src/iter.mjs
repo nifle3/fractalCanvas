@@ -1,8 +1,10 @@
 import { iterInput, state } from "./consts.mjs"; 
 
+state.iteration = Number(iterInput.value);
+
 var onChangeIteration = (
     (event) => {
-        state.iteration = event.target.value;
+        state.iteration = Number(event.target.value);
     }
 );
 
