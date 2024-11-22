@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "esbuild ./src/index.mjs --bundle --outdir=./ --watch",
     "build": "node build.mjs"
   },
   "keywords": [],
