@@ -9,6 +9,17 @@ export var state = {
 };
 export var {width, height} = canvas;
 
+export var translateX = (
+    () => {
+        width/2;
+    }
+);
+export var translateY = (
+    () => {
+        return height/2;
+    }
+);
+
 ctx.translate(width/2, height/2);
 ctx.strokeStyle = 'rgba(255, 255, 255, 255)';
 ctx.fillStyle = "rgb(200 0 0)";

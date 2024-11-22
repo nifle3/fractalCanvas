@@ -1,4 +1,4 @@
-import {state, ctx, height, width} from "./consts.mjs";
+import {state, ctx, translateX, translateY, width, height} from "./consts.mjs";
 
 
 export var logDraw = (

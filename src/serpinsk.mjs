@@ -3,59 +3,75 @@ import { logDraw, clearRect } from "./utils.mjs";
 
 var calculateTrueLength = (
     (length) => {
-        return length/2;
+        var truelength = length/2;
+        return truelength;
     }
 );
 
-var drawEqualTrianlge = (
-    (xCenter, yCenter, length) => {
-        var halfLength = calculateTrueLength(length);
-        ctx.moveTo(xCenter, yCenter-halfLength);
-        ctx.lineTo(xCenter+halfLength, yCenter+halfLength);
-        ctx.lineTo(xCenter-halfLength, yCenter+halfLength);
-        ctx.closePath();
+var attractGenerate = (
+    (centerX, centerY, length) => {
+        var radius = calculateTrueLength(length);
+        var x1 = centerX;
+        var y1 = centerY - radius;
+        var x2 = centerX - radius;
+        var y2 = centerY + radius;
+        var x3 = centerX + radius;
+        var y3 = centerY + radius;
+
+        var dot1 = {
+            "x": x1,
+            "y": y1,
+        }
+
+        var dot2 = {
+            "x": x2,
+            "y": y2,
+        }
+
+        var dot3 = {
+            "x": x3,
+            "y": y3,
+        }
+
+        result = [dot1, dot2, dot3]
+        return result
     }
 );
 
-var calculateCenterOfShapesTriangle = (
-    (xCenter, yCenter, length) => {
-        var halfLength = calculateTrueLength(length);
-        var dot1X = xCenter;
-        var dot1Y = yCenter-halfLength;
-        var dot2X = xCenter+halfLength;
-        var dot2Y = yCenter+halfLength;
-        var dot3X = xCenter-halfLength;
-        var dot3Y = yCenter+halfLength;
-
-        var result = [];
-        
-
-        /*
-            {
-                "x":
-                "y":
-            }
-        */
-
-
-        
-
-        return result;
+var drawPoint = (
+    ({x, y}) => {
+        ctx.fillRect(x, y, 1, 1);
     }
 );
 
 var serpinsk = (
     () => {
-        var xCenter = 0;
-        var yCenter = 0;
-     
-        ctx.beginPath();
-        drawEqualTrianlge(xCenter, yCenter, 400);
+        var attracts = attractGenerate(0, 0, 400);
+        var pPast = attracts[0];        
 
-        for (var i = 0; i < state.iteration; i++) {
+        drawPoint(pPast);
+
+        var iteration = state.iteration * 100;
+        for (var i = 0; i <  iteration; i++) {
+            var n = Math.random()
+            var attractor = attracts[2];
+            if (n-0.3 <= 0) {
+                attractor = attracts[0];
+            } else if (n-0.6 <= 0) {
+                attractor = attracts[1];
+            }
+        
+            var xNew = (pPast.x + attractor.x) / 2;
+            var yNew = (pPast.y + attractor.y) / 2;
+
+            var pointNew = {
+                "x": xNew,
+                "y": yNew,
+            };
+
+            drawPoint(pointNew);
+            pPast = pointNew;
         }
-
-
 
         ctx.stroke();
     }
