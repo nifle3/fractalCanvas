@@ -1,5 +1,5 @@
 import { ctx, serpinskBtn, state } from "./consts.mjs";
-import { logDraw, clearRect } from "./utils.mjs";
+import { logDraw, clearRect, checkValidIteration } from "./utils.mjs";
 
 var calculateTrueLength = (
     (length) => {
@@ -77,4 +77,5 @@ var serpinsk = (
     }
 );
 
-serpinskBtn.addEventListener("click", logDraw(clearRect(serpinsk)));
+serpinskBtn.addEventListener("click", 
+    checkValidIteration(logDraw(clearRect(serpinsk)), 5000));

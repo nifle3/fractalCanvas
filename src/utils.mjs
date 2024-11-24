@@ -17,3 +17,24 @@ export var clearRect = (
         callback();
     }
 );
+
+export var checkValidIteration = (
+    (callback, iteration) => {
+        if (state.iteration < 0) {
+            alert(`iteration must be greater than 0, now equals ${state.iteration}`);
+            return;
+        }
+
+        if (!Number.isInteger(state.iteration)) {
+            alert("iteration must be a number");
+            return;
+        }
+        
+        if (state.iteration >= iteration) {
+            alert(`iteration must be lower than ${iteration}, now equals ${state.iteration}`);
+            return;
+        }
+
+        callback();
+    }
+);
