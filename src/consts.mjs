@@ -21,5 +21,5 @@ export var translateY = (
 );
 
 ctx.translate(width/2, height/2);
-ctx.strokeStyle = 'rgba(255, 255, 255, 255)';
-ctx.fillStyle = "rgb(200 0 0)";
+ctx.strokeStyle = "rgba(200, 0, 0, 255)";
+ctx.fillStyle = "rgbа(200, 0, 0, 255)";

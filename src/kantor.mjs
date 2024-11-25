@@ -35,7 +35,6 @@ var calculateNextY = (
 
 var kantor = (
     () => {
-
         var innerKantor = (
             (iteration, width, x, y) => {
                 if (iteration <= 0) {
@@ -44,7 +43,7 @@ var kantor = (
 
                 drawLine(x, y, width);
                 width = calculateNextWidth(width);
-                var nextX = calculateNextX(x)
+                var nextX = calculateNextX(x, width)
                 y = calculateNextY(y);
                 iteration -= 1;
                 innerKantor(iteration, width, x, y);
@@ -58,7 +57,6 @@ var kantor = (
         var y = -100;
 
         innerKantor(state.iteration, width, x, y);
-
         ctx.stroke();
     }
 );

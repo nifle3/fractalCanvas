@@ -48,7 +48,8 @@ var serpinsk = (
     () => {
         var attracts = attractGenerate(0, 0, 400);
         var pPast = attracts[0];        
-
+        ctx.beginPath();
+        
         drawPoint(pPast);
 
         var iteration = state.iteration * 100;
@@ -77,7 +78,5 @@ var serpinsk = (
     }
 );
 
-serpinskBtn.addEventListener(
-    "click", 
-    (logDraw(clearRect(serpinsk)))
-);
+serpinskBtn.addEventListener("click", 
+    checkValidIteration(logDraw(clearRect(serpinsk)), 4000));

@@ -41,6 +41,5 @@ export var checkValidIteration = (
         }
 
         callback();
-        console.log("callback");
     }
 );
