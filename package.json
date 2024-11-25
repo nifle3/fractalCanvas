@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node build.dev.mjs",
-    "build": "node build.mjs"
+    "dev": "node ./build/build.dev.mjs",
+    "build": "node ./build/build.mjs"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "eslint": "^9.15.0",
-    "globals": "^15.12.0"
+    "globals": "^15.12.0",
+    "jsdoc": "^4.0.4"
   }
 }

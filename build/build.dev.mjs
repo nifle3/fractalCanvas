@@ -1,11 +1,9 @@
 import * as esbuild from 'esbuild';
+import { createPrototypeWithSettings } from './settings.mjs';
 
-var context = await esbuild.context({
-    entryPoints : ["src/index.mjs"],
-    bundle: true,
-    target: "esnext",
-    outdir: "./"
-});
+var settings = createPrototypeWithSettings({});
+
+var context = await esbuild.context(settings);
 
 await context.watch();
 
