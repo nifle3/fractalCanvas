@@ -21,7 +21,7 @@ export var clearRect = (
 export var checkValidIteration = (
     (callback, iteration) => () => {
         if (state.iteration < 0) {
-            var message = `iteration must be greater than 0, now equals ${state.iteration}`; 
+            let message = `iteration must be greater than 0, now equals ${state.iteration}`; 
             alert(message);
             console.log(message);
             return;
@@ -34,7 +34,7 @@ export var checkValidIteration = (
         }
         
         if (state.iteration >= iteration) {
-            var message = `iteration must be lower than ${iteration}, now equals ${state.iteration}`; 
+            let message = `iteration must be lower than ${iteration}, now equals ${state.iteration}`; 
             alert(message);
             console.log(message);
             return;

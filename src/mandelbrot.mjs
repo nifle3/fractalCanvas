@@ -8,4 +8,5 @@ var mandelbrot = (
     }
 );
 
-mandelbrotBtn.addEventListener("click", logDraw(clearRect(mandelbrot)));
+mandelbrotBtn.addEventListener("click", 
+    logDraw(clearRect(mandelbrot)));

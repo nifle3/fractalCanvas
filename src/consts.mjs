@@ -1,4 +1,5 @@
-export var ctx  = document.querySelector("#canvas").getContext("2d");
+var canvas = document.querySelector("#canvas")
+export var ctx  = canvas.getContext("2d");
 export var iterInput = document.querySelector("#iteration");
 export var kantorBtn = document.querySelector("#kantor");
 export var kohaBtn  = document.querySelector("#koha");
