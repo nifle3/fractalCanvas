@@ -21,20 +21,20 @@ var attractGenerate = (
         var dot1 = {
             "x": x1,
             "y": y1,
-        }
+        };
 
         var dot2 = {
             "x": x2,
             "y": y2,
-        }
+        };
 
         var dot3 = {
             "x": x3,
             "y": y3,
-        }
+        };
 
-        result = [dot1, dot2, dot3]
-        return result
+        var result = [dot1, dot2, dot3];
+        return result;
     }
 );
 
@@ -77,5 +77,7 @@ var serpinsk = (
     }
 );
 
-serpinskBtn.addEventListener("click", 
-    checkValidIteration(logDraw(clearRect(serpinsk)), 5000));
+serpinskBtn.addEventListener(
+    "click", 
+    (logDraw(clearRect(serpinsk)))
+);

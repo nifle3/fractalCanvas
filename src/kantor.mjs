@@ -21,22 +21,43 @@ var calculateNextWidth = (
     }
 );
 
-var CalculateNextX = (
+var calculateNextX = (
     (pastX, widthNow) => {
         return pastX + (widthNow * 2);
     }
 );
 
+var calculateNextY = (
+    (pastY) => {
+        return pastY + 10;
+    }
+);
+
 var kantor = (
     () => {
+
+        var innerKantor = (
+            (iteration, width, x, y) => {
+                if (iteration <= 0) {
+                    return;
+                }
+
+                drawLine(x, y, width);
+                width = calculateNextWidth(width);
+                var nextX = calculateNextX(x)
+                y = calculateNextY(y);
+                iteration -= 1;
+                innerKantor(iteration, width, x, y);
+                innerKantor(iteration, width, nextX, y);
+            }
+        );
+
         ctx.beginPath();
         var width = 500;
         var x = calculateXByWidth(0, width);
         var y = -100;
-        drawLine(x, y, width);
 
-        for (var i = 0; i < state.iteration; i++) {
-        }
+        innerKantor(state.iteration, width, x, y);
 
         ctx.stroke();
     }

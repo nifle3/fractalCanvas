@@ -1,4 +1,4 @@
-import {state, ctx, translateX, translateY, width, height} from "./consts.mjs";
+import {state, ctx, width, height} from "./consts.mjs";
 
 
 export var logDraw = (
@@ -19,22 +19,28 @@ export var clearRect = (
 );
 
 export var checkValidIteration = (
-    (callback, iteration) => {
+    (callback, iteration) => () => {
         if (state.iteration < 0) {
-            alert(`iteration must be greater than 0, now equals ${state.iteration}`);
+            var message = `iteration must be greater than 0, now equals ${state.iteration}`; 
+            alert(message);
+            console.log(message);
             return;
         }
 
         if (!Number.isInteger(state.iteration)) {
             alert("iteration must be a number");
+            console.log("iteration must be a number");
             return;
         }
         
         if (state.iteration >= iteration) {
-            alert(`iteration must be lower than ${iteration}, now equals ${state.iteration}`);
+            var message = `iteration must be lower than ${iteration}, now equals ${state.iteration}`; 
+            alert(message);
+            console.log(message);
             return;
         }
 
         callback();
+        console.log("callback");
     }
 );
