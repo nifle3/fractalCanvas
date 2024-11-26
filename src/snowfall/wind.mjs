@@ -26,17 +26,24 @@ var windPrototype = {
     )
     , changeDirectionAndSpeed: (
         function() {
-            this.deltaFrame = 0;
+            this.deltaFrame = this.generateNewDeltaFrame();
 
             this.currentDirection = generateRandomDirections();
             this.speed = generateNumber(0.1, 10);
 
-            console.log("direction changed");
+            console.log(`direction changed to ${this.currentDirection}`);
         }
     )
     , calculateSpeed() {
         return this.currentDirection * this.speed;
     }
+    , generateNewDeltaFrame: (
+        function() {
+            var deltaFrameToChange = generateNumber((-1 * this.frameToChange), 100);
+            return deltaFrameToChange;
+        }   
+    )
+    ,
 }
 
 Reflect.setPrototypeOf(Wind.prototype, windPrototype);

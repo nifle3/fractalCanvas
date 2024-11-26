@@ -8,6 +8,6 @@ export var Directions = Object.freeze({
 
 export var generateRandomDirections = (
     () => {
-        return generateInteger(Directions.LEFT, Directions.RIGHT);
+        return generateInteger(Directions.STAY, Directions.RIGHT);
     }
 );
