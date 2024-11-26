@@ -1,4 +1,5 @@
-import { Directions } from "./windDirection.mjs"
+import { generateNumber } from "./utils.mjs";
+import { Directions, generateRandomDirections } from "./windDirection.mjs"
 
 /**
  * @constructor
@@ -7,6 +8,8 @@ import { Directions } from "./windDirection.mjs"
 function Wind(frameToChangeDirection) {
     this.frameToChange = frameToChangeDirection;
     this.deltaFrame = 0;
+    this.currentDirection = Directions.STAY;
+    this.speed = 0.1;
 }
 
 var windPrototype = {
@@ -14,17 +17,26 @@ var windPrototype = {
         function() {
             this.deltaFrame += 1;
             if (this.deltaFrame >= this.frameToChange) {
-                this.changeDirection();
+                this.changeDirectionAndSpeed();
+                return this.calculateSpeed();
             } 
-            return 0
+            
+            return this.calculateSpeed();
         }
     )
-    , changeDirection: (
+    , changeDirectionAndSpeed: (
         function() {
             this.deltaFrame = 0;
+
+            this.currentDirection = generateRandomDirections();
+            this.speed = generateNumber(0.1, 10);
+
             console.log("direction changed");
         }
     )
+    , calculateSpeed() {
+        return this.currentDirection * this.speed;
+    }
 }
 
 Reflect.setPrototypeOf(Wind.prototype, windPrototype);

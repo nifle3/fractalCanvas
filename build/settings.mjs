@@ -1,5 +1,10 @@
+var entryPoints = [
+    "src/fractal/index.mjs",
+    "src/snowfall/index.mjs",
+]; 
+
 var prototype = {
-    entryPoints : ["src/fractal/index.mjs", "src/snowfall/index.mjs"],
+    entryPoints : entryPoints,
     bundle: true,
     outdir: "www",
     target: "esnext",

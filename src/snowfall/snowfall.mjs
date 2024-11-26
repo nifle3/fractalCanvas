@@ -40,6 +40,9 @@ var snowfallPrototype = {
                 if (value.isOutOfY(this.height)) {
                     value.moveToStart();
                 }
+                if (value.isOutOfX(-10, this.width+10)) {
+                    value.moveToAnotherSide(-10, this.width+10);
+                }
             });;
         }
     )
@@ -57,7 +60,7 @@ Reflect.setPrototypeOf(Snowfall.prototype, snowfallPrototype);
 export var createSnowfall = (
     (width, height, ctx, countSnowflakes) => {
         var snowflakes = generateSnowflakes(countSnowflakes, width);
-        var wind = createWind(120);
+        var wind = createWind(300);
         var snowfall = new Snowfall(width, height, ctx, snowflakes, wind);
         return snowfall;
     }

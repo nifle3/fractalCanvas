@@ -1,7 +1,10 @@
 import * as esbuild from 'esbuild';
 import { createPrototypeWithSettings } from './settings.mjs';
 
-var settings = createPrototypeWithSettings({});
+var settings = createPrototypeWithSettings({
+    "sourcemap": true
+    ,
+});
 
 var context = await esbuild.context(settings);
 

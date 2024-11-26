@@ -38,6 +38,21 @@ var snowflakePrototype = {
             this.y = 0;
         }
     )
+    , isOutOfX: (
+        function(xStart, xEnd) {
+            return ((this.x < xStart) || (this.x > xEnd));
+        }
+    )
+    , moveToAnotherSide: (
+        function(xStart, xEnd) {
+            if (this.x < xStart) {
+                this.x = xEnd;
+                return;
+            }
+
+            this.x = xStart;
+        }
+    )
 };
 
 Reflect.setPrototypeOf(Snowflake.prototype, snowflakePrototype);
