@@ -75,7 +75,7 @@ var generateSnowflakes = (
     (count, width) => {
         var snowflakes = [];
         for (var i = 0; i < count; i++) {
-            var y = 0;
+            var y = -10;
             var x = generateNumber(-10, width+10);
             var snowflake = createSnowflake(x, y);
             snowflakes.push(snowflake);
