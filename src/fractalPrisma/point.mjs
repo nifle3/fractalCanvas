@@ -16,38 +16,51 @@ var PointPrototype = {
     ),
     goNext: (
         function() {
-            var deltaX = this.getNextDeltaPoint();
-            this.x += deltaX;
-            var deltaY = this.getNextDeltaPoint();
-            this.y += deltaY;
+            var {dx, dy} = this.getNextDeltaPoint();
+            this.x += dx;
+            this.y += dy;
             this.color.changeColorWithRandomDelta();
         }
     ),
     getNextDeltaPoint: (
         function() {
-            var seed = Math.random() * 10;
-            if (seed > 5) {
-                return 1;
+            var seed = ((Math.random() * 4) + 1);
+            var nextDeltaSelector = Math.floor(seed);
+            var result = {
+                dx: 0,
+                dy: 0,
+            };
+
+            switch (nextDeltaSelector) {
+                case 1:
+                    result.dx = 1;
+                    return result
+                case 2:
+                    result.dx = -1;
+                    return result;
+                case 3:
+                    result.dy = 1;
+                    return result;
+                case 4:
+                    result.dy = -1;
+                    return result;
             }
-            return 0;
+        
+            return result
         }
     ),
     checkOutOfBounds: (
         function(width, heigth) {
-            if (this.x > width) {
+            if (this.x >= width) {
                 this.x = 0;
-                console.log(`x ${this.x} out of`);
             } else if (this.x < 0) {
                 this.x = width-10;
-                console.log(`x ${this.x} out of`);
             }
 
-            if (this.y > heigth) {
+            if (this.y >= heigth) {
                 this.y = 0;
-                console.log(`y ${this.y} out of`);
             } else if (this.y < 0) {
                 this.y = heigth-10;
-                console.log(`y ${this.y} out of`);
             }
         }
     )
