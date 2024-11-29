@@ -1,6 +1,7 @@
 var entryPoints = [
     "src/fractal/index.mjs",
     "src/snowfall/index.mjs",
+    "src/fractalPrisma/index.mjs",
 ]; 
 
 var prototype = {
