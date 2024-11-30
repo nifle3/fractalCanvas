@@ -17,7 +17,7 @@ var vectorPrototype = {
             }
 
             this.vecPoint.x = this.vecPoint.x / this.length;
-            this.vecPoint = this.vecPoint.y / this.length;
+            this.vecPoint.y = this.vecPoint.y / this.length;
 
             this.calculateLength()
         }
@@ -31,23 +31,12 @@ var vectorPrototype = {
     ),
     dot: (
         function(vecTwo) {
-            return ((this.vecPoint.x * vecTwo.x) + (this.vecPoint.y * vecTwo.y));
+            return ((this.vecPoint.x * vecTwo.vecPoint.x) + (this.vecPoint.y * vecTwo.vecPoint.y));
         }
     )
 };
 
 Reflect.setPrototypeOf(Vector.prototype, vectorPrototype);
-
-export var newVectorWithTwoPoints = (
-    (point1, point2) => {
-        var vecX = point2.x - point1.x;
-        var vecY = point2.y - point1.y;
-        var vecPoint = new Point(vecX, vecY);
-
-        var vector = new Vector(vecPoint, undefined);
-        return vector;
-    }
-);
 
 export var newVectorWithCoord = (
     (x1, y1, x2, y2) => {
@@ -60,3 +49,15 @@ export var newVectorWithCoord = (
     }
 );
 
+export var newRandomNormalizeVector  = (
+    (x, y) => {
+        const angle = Math.random() * 2 * Math.PI;
+
+        var randY = value.y + Math.sin(angle) ;
+        var randX = value.x + Math.cos(angle);
+        
+        var vector = newVectorWithCoord(x, y, randX, randY);
+        vector.normalize();
+        return vector;
+    }
+)

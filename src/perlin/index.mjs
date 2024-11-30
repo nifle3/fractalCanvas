@@ -1,5 +1,6 @@
 import {Point} from "./point.mjs";
 import {newVectorWithCoord} from "./vector.mjs";
+import {newGrid} from "./grid.mjs";
 
 "use strict";
 
@@ -21,68 +22,76 @@ export var generateNumber = (
 
 var canvas = document.querySelector("#canvas");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 400;
+canvas.height = 400;
 
 var { width, height } = canvas;
+var ctx = canvas.getContext("2d");
 
 
-var gridVertex = [
-    new Point(0, 0),
-    new Point(width, 0),
-    new Point(0, height),
-    new Point(width, height),
-];
+var sFunc = (
+    (t) => {
+        return Math.pow(t, 3)*((t*(t-15))+10);
+    }
+)
 
+var lFunc = (
+    (x, LL, LR) => {
+        var r1 = sFunc(x - Math.floor(x));
+        var r2 = LR-LL;
+        var result = (LL + (r1*r2));
+        return result;
+    }
+)
 
-var vectorVertex = gridVertex.map(value => {
-    var randY = value.y + generateNumber(-1, 1);
-    var randX = value.x + generateNumber(-1, 1);
-    
-    var vector = newVectorWithCoord(value.x, value.y, randX, randY);
-    vector.normilize();
-    
-    return vector;
-});
+var uFunc = (
+    (x, UL, UR) => {
+        return (UL + (sFunc(x - Math.floor(x))*(UR-UL)));
+    }
+)
+
+var noiseFunc = (
+    (x, y, UL, UR, LL, LR) => {
+        return (lFunc(x, LL, LR) + (sFunc(y - Math.floor(y)) * (uFunc(x, UL, UR) - lFunc(x, LL, LR))));
+    }
+)
+
+var grid = newGrid(4, 4, width, height);
 
 var caclulateNoise = (
     (x, y) => {
+        /*
+        LL - idx = 2
+        LR - idx = 3
+        UL - idx = 0
+        UR - idx = 1
+        */   
+        var vectorsWeight = gridVertex.map((value, idx) => {
+            var vectorToPoint = newVectorWithCoord(value.x, value.y, x, y);
+            var result = vectorVertex[idx].dot(vectorToPoint);
+            return result;
+        });
+        
+        var noiseValue = noiseFunc(x, y, 
+            vectorsWeight[0], vectorsWeight[1],
+            vectorsWeight[2], vectorsWeight[3]
+        );
+        noiseValue += 1;
+        noiseValue /= 2;
 
+        var color = 255 * noiseValue;
+        ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+        ctx.fillRect(x, y, 0.3, 0.3);
     }
 );
 
-for (var i = 0; i < width; i++) {
-    for (var j = 0; j < height; j++) {
-        /*
-            LL - idx = 2
-            LR - idx = 
-            UL - idx = 
-            UR - idx = 
-        */
-        var vectorsWeight = gridVertex.map((value, idx) => {
-            var vectorToPoint = newVectorWithCoord(value.x, value.y, i, j);
-            return vectorVertex[idx].dot(vectorToPoint);
-        });
-
-        
+for (var s = 0; s < width; s++) {
+    for (var t = 0; t < height; t++) {
+        var noiseInner = caclulateNoise(s, t, 1); 
+        for (var x = s; x < s+1; x+=0.3) {
+            for (var y = t; y < t+1; y+=0.3) {
+                noiseInner(x, y);
+            }
+        }    
     }
 }
-
-/*
-    ---------------------------------------------
-        DRAWING
-    ---------------------------------------------
-
-*/
-var ctx = canvas.getContext("2d");
-ctx.fillRect(0, 0, width, height);
-
-var imageData = ctx.getImageData(0, 0, width, height);
-
-for (var i = 0; i < imageData.data.length ; i += 4) {
-    imageData.data[i] = 255;
-    imageData.data[i+1] = 0;
-    imageData.data[i+2] = 0;
-}
-
-ctx.putImageData(imageData, 0, 0);
